@@ -140,4 +140,4 @@ class CalcBeadResults(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/bead_results', CalcBeadResults),
-], debug=True)
+], debug=False)
