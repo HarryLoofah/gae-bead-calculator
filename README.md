@@ -22,4 +22,4 @@ MIT
 ###Try it online:
 http://bead-calculator.appspot.com/
 
-(This is a very simple implementation; please use your browsers back button to navigate)
+(This is a very simple implementation; please use your browser's back button to navigate)
