@@ -6,7 +6,7 @@
 body {
     font-size: 62.5%;
     font-family: Helvetica, sans-serif;
-    background: url(../images/stripe.png) repeat;
+    background: url(../images/index.png) repeat-x scroll 50% 0px #EDF5FA;
 }
 
 p {
@@ -17,32 +17,36 @@ p {
 
 a {
     color:#F8F8F8;
+    text-decoration:none;
 }
 
 a:hover {
     color:#C0C0C0;
 } 
 
-#page-wrap {
+#container {
     width: 660px;
     background: white;
-    padding: 20px 50px 20px 50px;
+    filter:alpha(opacity=60); /* IE */
+    -moz-opacity:0.6; /* Mozilla */
+    opacity: 0.6; /* CSS3 */
+    padding: 50px 50px 20px 50px;
     margin: 20px auto;
     min-height: 500px;
     height: auto !important;
     height: 500px;
 }
 
-#menu-top-bar {
+#header {
     text-align: left;
-    background: none repeat scroll 0% 0% #222;
+    background: none repeat scroll 0% 0% #transparent;
     position: relative;
     width: 100% !important;
     z-index: 6000;
-    padding: 20px 0px;
+    padding: 28px 0px;
 }
 
-#menu-bar-inside {
+#menu-bar {
     width: 765px;
     margin: 0px auto;
     position: relative;
@@ -89,7 +93,7 @@ a:hover {
 }
 
 #content {
-    margin-top: 80px;
+    margin-top: 78px;
 }
 
 label {

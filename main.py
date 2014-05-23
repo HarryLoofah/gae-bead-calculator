@@ -44,15 +44,10 @@ class CalcBeadResults(webapp2.RequestHandler):
             """
             # If beads is less than 12, print error message and return.
             if int(bead_input) < 12:
-                self.response.write('<!doctype html><html><body><pre>')
-                self.response.write('<p>Error. Please use more than 12 beads.</p>')
-                self.response.write('</pre></body></html>')
-            
-            # If beads is not divisible by 6 or 9, print error message and return
-            if int(bead_input) % 6 != 0 and int(bead_input) % 9 != 0:
-                self.response.write('<!doctype html><html><body><pre>')
-                self.response.write('<p>Please pick a number that is divisible by 6 or 9</p>')
-                self.response.write('</pre></body></html>')
+                more_beads_message = "Error. Please use more than 12 beads."
+
+                template = env.get_template('try-again.html')
+                self.response.write(template.render(more_beads_message = more_beads_message))
                 
         # Run sanity_check.
         sanity_check(bead_input)
@@ -87,8 +82,8 @@ class CalcBeadResults(webapp2.RequestHandler):
                 starting_number = str(starting_number)
                 beads_to_add = str(beads_to_add)
 
-                # If the list contains values, print design elements and start/add numbers.
-                template = env.get_template('index.html')
+                # If pass_list contains values, print design elements and start/add numbers.
+                template = env.get_template('pass-test.html')
                 self.response.write(template.render(
                                                     pass_list = pass_list, 
                                                     starting_number = starting_number, 
@@ -103,15 +98,13 @@ class CalcBeadResults(webapp2.RequestHandler):
                     high_bead += 1
                     higher_list = [v for k, v in check_list.iteritems() if int(high_bead) % k == 0]
                     if len(higher_list) != 0 and int(bead_input) >= 12:
-                        # Print a message with the suggested higher number
-                        # and a list of short and long values when a usable
-                        # lower number is found.
-                        self.response.write('<!doctype html><html><body><pre>')
-                        self.response.write('<p>Try this many beads instead:</p>')
-                        self.response.write(str(high_bead))
-                        self.response.write('<p>Which gives you these design options:</p>')
-                        self.response.write(sorted(higher_list))
-                        
+                        # If pass_list does not contain values,
+                        # suggest usable design element numbers
+                        # for both next bead higher and next bead lower.
+                        high_bead = str(high_bead)
+                        higher_list = ", ".join(repr(e) for e in sorted(higher_list))
+
+
                 # Also, find the next usable number lower than beads.
                 lower_list = pass_list
                 low_bead = int(bead_input)
@@ -121,14 +114,17 @@ class CalcBeadResults(webapp2.RequestHandler):
                     low_bead -= 1
                     lower_list = [v for k, v in check_list.iteritems() if int(low_bead) % k == 0]
                     if len(lower_list) != 0:
-                        # Print a message with the suggested lower number
-                        # and a list of long and short values when a usable
-                        # lower number is found.
-                        self.response.write('<p>Or try this many beads:</p>')
-                        self.response.write(str(low_bead))
-                        self.response.write('<p>Which gives you these design options:</p>')
-                        self.response.write(sorted(lower_list))
-                        self.response.write('</pre></body></html>')
+                        # Suggest design elements for lower bead options.
+
+                        low_bead = str(low_bead)
+                        lower_list = ", ".join(repr(e) for e in sorted(lower_list))
+
+                        template = env.get_template('no-pass.html')
+                        self.response.write(template.render(
+                                                    high_bead = high_bead, 
+                                                    higher_list = higher_list,
+                                                    low_bead = low_bead, 
+                                                    lower_list = lower_list))
                                                 
         # Run long_short_values.                
         long_short_values(bead_input)
