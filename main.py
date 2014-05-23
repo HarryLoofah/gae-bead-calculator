@@ -15,28 +15,21 @@
 # limitations under the License.
 
 import cgi
+import os
 
 import webapp2
+import jinja2
 
-MAIN_PAGE_HTML = """\
-<!doctype html>
-<html>
-  <body>
-    <form action="/bead_results" method="get">
-      <div>
-        <p>Enter the total number of beads in your project:</p>
-        <textarea input type="text" name="beads_entered" rows="3" cols="20"></textarea>
-      </div>
-      <div><input type="submit" value="Run"></div>
-    </form>
-  </body>
-</html>
-"""
+from jinja2 import Environment, FileSystemLoader
+env = Environment(loader=FileSystemLoader('templates'))
+
 
 class MainHandler(webapp2.RequestHandler):
             
     def get(self):
-        self.response.write(MAIN_PAGE_HTML)
+
+        template = env.get_template('base.html')
+        self.response.write(template.render())
         
 class CalcBeadResults(webapp2.RequestHandler):
     
@@ -136,6 +129,7 @@ class CalcBeadResults(webapp2.RequestHandler):
                                                 
         # Run long_short_values.                
         long_short_values(bead_input)
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),

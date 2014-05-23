@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 62.5%;
+    font-family: Helvetica, sans-serif;
+    background: url(../images/stripe.png) repeat;
+}
+
+p {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+
+a {
+    color:#F8F8F8;
+}
+
+a:hover {
+    color:#C0C0C0;
+} 
+
+#page-wrap {
+    width: 660px;
+    background: white;
+    padding: 20px 50px 20px 50px;
+    margin: 20px auto;
+    min-height: 500px;
+    height: auto !important;
+    height: 500px;
+}
+
+#contact-area {
+    width: 600px;
+    margin-top: 25px;
+}
+
+#contact-area input, #contact-area textarea {
+    padding: 5px;
+    width: 471px;
+    font-family: Helvetica, sans-serif;
+    font-size: 1.4em;
+    margin: 0px 0px 10px 0px;
+    border: 2px solid #ccc;
+}
+
+#contact-area textarea {
+    height: 90px;
+}
+
+#contact-area textarea:focus, #contact-area input:focus {
+    border: 2px solid #0099FF;
+}
+
+#contact-area input.submit-button {
+    width: 100px;
+    float: left;
+}
+
+label {
+    float: left;
+    text-align: right;
+    margin-right: 15px;
+    width: 100px;
+    padding-top: 5px;
+    font-size: 1.4em;
+}
+
+#menu-top-bar {
+    text-align: left;
+    background: none repeat scroll 0% 0% #222;
+    position: relative;
+    width: 100% !important;
+    z-index: 6000;
+    padding: 20px 0px;
+}
+
+#menu-bar-inside {
+    width: 960px;
+    margin: 0px auto;
+    position: relative;
+}
+
+#menu-bar-badge:before, #demo-bar-badge:after {
+    display: none !important;
+}
+
+#menu-bar-badge {
+
+    display: inline-block;
+    width: 302px;
+    padding: 0px !important;
+    margin: 0px !important;
+    background-color: transparent !important;
+}
+

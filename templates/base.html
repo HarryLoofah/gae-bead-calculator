@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <title>A Peyote Stitch Beadwork Calculator</title>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+</head>
+<body>
+    <div id="menu-top-bar">
+        <div id="menu-bar-inside">
+            <h1 id="menu-bar-badge">
+                <a href="/">Bead Calculator</a>
+            </h1>
+        </div>
+        <div id="menu-bar-buttons"></div>
+    </div>
+    <div id="page-wrap">
+        <h1>A Peyote Stitch Beadwork Calculator</h1>
+    <div id="contact-area"> 
+    <form action="/bead_results" method="get">
+        <p>Enter the total number of beads for your project:</p>
+        <div>
+            <textarea class="form-control" rows="3" cols="20" id="textArea" type="text" name="beads_entered"></textarea>
+        </div>
+        <div>
+            <input type="submit" name="submit" class="submit-button" value="Submit"/>
+        </div>
+    </form>
+    </div>
+
+    <div id="content">{% block content %} {% endblock %}</div>
+    
+    <div style="clear: both;"></div>
+</body>
+</html>
