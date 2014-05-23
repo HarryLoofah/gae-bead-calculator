@@ -14,8 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import cgi
 import os
+import cgi
+import logging
 
 import webapp2
 import jinja2
@@ -81,15 +82,17 @@ class CalcBeadResults(webapp2.RequestHandler):
                 suggested = int(bead_input)
                 beads_to_add = suggested/3
                 starting_number = beads_to_add*2
+
+                pass_list = ", ".join(repr(e) for e in sorted(pass_list))
+                starting_number = str(starting_number)
+                beads_to_add = str(beads_to_add)
+
                 # If the list contains values, print design elements and start/add numbers.
-                self.response.write('<!doctype html><html><body><pre>')
-                self.response.write('<p>You can use these short/long design elements:</p>')
-                self.response.write(sorted(pass_list))
-                self.response.write('<p>Start with this many beads:</p>')
-                self.response.write(str(starting_number))
-                self.response.write('<p>and then add this many beads:</p>')
-                self.response.write(str(beads_to_add))
-                self.response.write('</pre></body></html>')
+                template = env.get_template('index.html')
+                self.response.write(template.render(
+                                                    pass_list = pass_list, 
+                                                    starting_number = starting_number, 
+                                                    beads_to_add = beads_to_add))
                 
             if len(pass_list) == 0:
                 # If list contains no values, find next usable number higher than beads.
@@ -135,3 +138,14 @@ app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/bead_results', CalcBeadResults),
 ], debug=False)
+
+
+# Extra Hanlder like 404 500 etc
+def handle_500(request, response, exception):
+    logging.exception(exception)
+    response.write('Oops! This is a 500 error. ')
+    response.write('This program can only process numbers. ')
+    response.write('Please use the back arrow and try again.')
+    response.set_status(500)
+
+app.error_handlers[500] = handle_500

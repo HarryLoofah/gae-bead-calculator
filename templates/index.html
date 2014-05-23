@@ -1,7 +1,11 @@
+
 {% extends "base.html" %}
 
 {% block content %}
-
-    <p>Hello! How are you?</p>
+	
+    <p>You can use these short/long design elements:</p>
+    <p>{{ pass_list }}</p>
+    <p>Start with this many beads: {{ starting_number }}</p>
+    <p>and then add : {{ beads_to_add }}</p>
 
 {% endblock %}
