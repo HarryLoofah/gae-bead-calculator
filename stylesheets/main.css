@@ -27,8 +27,6 @@ a:hover {
 #container {
     width: 660px;
     background: white;
-    filter:alpha(opacity=60); /* IE */
-    -moz-opacity:0.6; /* Mozilla */
     opacity: 0.6; /* CSS3 */
     padding: 50px 50px 20px 50px;
     margin: 20px auto;
@@ -38,11 +36,6 @@ a:hover {
 }
 
 #header {
-    text-align: left;
-    background: none repeat scroll 0% 0% #transparent;
-    position: relative;
-    width: 100% !important;
-    z-index: 6000;
     padding: 28px 0px;
 }
 
@@ -52,21 +45,7 @@ a:hover {
     position: relative;
 }
 
-#menu-bar-badge:before, #demo-bar-badge:after {
-    display: none !important;
-}
-
-#menu-bar-badge {
-
-    display: inline-block;
-    width: 302px;
-    padding: 0px !important;
-    margin: 0px !important;
-    background-color: transparent !important;
-}
-
 #main-form {
-    width: 600px;
     margin-top: 25px;
 }
 
