@@ -3,12 +3,12 @@
 
 {% block content %}
 	
-    <p>Try {{ high_bead }} beads instead:</p>
-    <p>Which gives you these design options:</p>
+    <p>You chose {{ beads_user_chose }} beads, but that number of beads won't work.</p>
+    <p>Try {{ high_bead }} beads instead, which gives you these short/long design options:</p>
     <p>{{ higher_list }}</p>
     <br>
     <p>Or try {{ low_bead }} beads:</p>
-    <p>Which gives you these design options:</p>
+    <p>Which gives you these short/long design options:</p>
     <p>{{ lower_list }}</p>
 
 {% endblock %}

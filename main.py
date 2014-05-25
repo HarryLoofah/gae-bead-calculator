@@ -68,9 +68,11 @@ class CalcBeadResults(webapp2.RequestHandler):
             """
             # If beads is less than 12, print error message.
             if int(bead_input) < 12:
-                more_beads_message = "Error. Please use more than 12 beads."
+                beads_user_chose = str(bead_input)
+                more_beads_message = "Please re-try using more than 12 beads."
                 template = env.get_template('try-again.html')
-                self.response.write(template.render(more_beads_message=more_beads_message))
+                self.response.write(template.render(beads_user_chose=beads_user_chose,
+                                                    more_beads_message=more_beads_message))
         # Run sanity_check.
         sanity_check(bead_input)
         def long_short_values(bead_input):
@@ -100,10 +102,12 @@ class CalcBeadResults(webapp2.RequestHandler):
                 pass_list = ", ".join(repr(e) for e in sorted(pass_list))
                 starting_number = str(starting_number)
                 beads_to_add = str(beads_to_add)
+                beads_user_chose = str(bead_input)
                 # If pass_list contains values, print design elements and start/add numbers.
                 # See /templates/pass-test.html, which extends base.html.
                 template = env.get_template('pass-test.html')
-                self.response.write(template.render(pass_list=pass_list,
+                self.response.write(template.render(beads_user_chose=beads_user_chose,
+                                                    pass_list=pass_list,
                                                     starting_number=starting_number,
                                                     beads_to_add=beads_to_add))
             if len(pass_list) == 0:
@@ -132,8 +136,10 @@ class CalcBeadResults(webapp2.RequestHandler):
                         # Suggest design elements for lower bead options.
                         low_bead = str(low_bead)
                         lower_list = ", ".join(repr(e) for e in sorted(lower_list))
+                        beads_user_chose = str(bead_input)
                         template = env.get_template('no-pass.html')
-                        self.response.write(template.render(high_bead=high_bead,
+                        self.response.write(template.render(beads_user_chose=beads_user_chose,
+                                                            high_bead=high_bead,
                                                             higher_list=higher_list,
                                                             low_bead=low_bead,
                                                             lower_list=lower_list))
