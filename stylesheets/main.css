@@ -44,6 +44,16 @@ a:hover {
     position: relative;
 }
 
+form h2 {
+    margin-bottom: 5px;
+}
+
+form ol {
+    font-size: 1.5em;
+    padding-left: 45px;
+    margin-bottom: 15px;
+}
+
 #main-form {
     margin-top: 25px;
 }
