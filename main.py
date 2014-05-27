@@ -146,10 +146,17 @@ class CalcBeadResults(webapp2.RequestHandler):
         # Run long_short_values.
         long_short_values(bead_input)
 
+class AboutPage(webapp2.RequestHandler):
+    """Renders the About page from separate code (does not use base.html)."""
+    def get(self):
+        """Create About page."""
+        template = env.get_template('about.html')
+        self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/bead_results', CalcBeadResults),
+    ('/about', AboutPage),
 ], debug=False)
 
 

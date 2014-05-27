@@ -1,3 +1,26 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>About Beadwork Calculator</title>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+</head>
+<body>
+    <div id="header">
+        <div id="menu-bar">
+            <h1><a href="/">Bead Calculator</a></h1>
+        </div>
+    </div>
+    <div id="container">
+        <h1>A Peyote Stitch Beadwork Calculator</h1>
+        <div><h2>How To Use</h2></div>
+
+        <div id="content">{% block content %} {% endblock %}</div>
+        
+        <div style="clear: both;"></div>
+    </div>
+</body>
+</html>
 
 
